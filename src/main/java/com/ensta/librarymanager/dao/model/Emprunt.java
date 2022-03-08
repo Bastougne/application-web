@@ -25,6 +25,18 @@ public class Emprunt {
         this.dateRetour = LocalDate.EPOCH;
     }
 
+    public int getPrimaryKey() { return primaryKey; }
+    public Membre getMembre() { return membre; }
+    public Livre getLivre() { return livre; }
+    public LocalDate getDateEmprunt() { return dateEmprunt; }
+    public LocalDate getDateRetour() { return dateRetour; }
+
+    public void setPrimaryKey( int primaryKey ) { this.primaryKey = primaryKey; }
+    public void setMembre( Membre membre ) { this.membre = membre; }
+    public void setLivre( Livre livre ) { this.livre = livre; }
+    public void setDateEmprunt( LocalDate dateEmprunt ) { this.dateEmprunt = dateEmprunt; }
+    public void setDateRetour( LocalDate dateRetour ) { this.dateRetour = dateRetour; }
+
     public String toString() {
         return "Primary Key : " + primaryKey +
             "\n Membre : " + membre.toString() +

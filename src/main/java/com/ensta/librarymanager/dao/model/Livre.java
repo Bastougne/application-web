@@ -20,6 +20,16 @@ public class Livre {
         this.isbn = "";
     }
 
+    public int getPrimaryKey() { return primaryKey; }
+    public String getTitre() { return titre; }
+    public String getAuteur() { return auteur; }
+    public String getIsbn() { return isbn; }
+
+    public void setPrimaryKey( int primaryKey ) { this.primaryKey = primaryKey; }
+    public void setTitre( String titre ) { this.titre = titre; }
+    public void setAuteur( String auteur ) { this.auteur = auteur; }
+    public void setIsbn( String isbn ) { this.isbn = isbn; }
+
     public String toString() {
         return "Primary Key : " + primaryKey +
             "\n Titre : " + titre +
