@@ -1,4 +1,4 @@
-package com.ensta.librarymanager.dao.model;
+package com.ensta.librarymanager.modele;
 
 public class Livre {
     private int primaryKey;

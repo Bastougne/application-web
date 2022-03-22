@@ -1,4 +1,4 @@
-package com.ensta.librarymanager.dao.model;
+package com.ensta.librarymanager.modele;
 
 import java.time.LocalDate;
 
