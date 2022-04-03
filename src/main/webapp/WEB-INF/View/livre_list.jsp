@@ -20,30 +20,29 @@
         <h1 class="page-announce-text valign">Liste des livres</h1>
       </div>
       <div class="row">
-	        <div class="col s12">
-	          <table class="striped no-padding">
-                <thead>
-                    <tr>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Code ISBN 13</th>
-                        <th>Détails</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    <tr>
-                        <td>Titre du livre</td>
-                        <td>Nom de l'auteur</td>
-                        <td>ISBN du livre</td>
-                        <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
-                    </tr>
-                    
-                    <!-- TODO : parcourir la liste des livres et les afficher selon la structure d'exemple ci-dessus -->
-                </tbody>
-            </table>
-          </div>
+	      <div class="col s12">
+	        <table class="striped no-padding">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Code ISBN</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="current" items="${ListLivre}">
+                <tr>
+                  <td>${current.titre}</td>
+                  <td>${current.auteur}</td>
+                  <td>${current.isbn}</td>
+                  <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
         </div>
+      </div>
     </section>
   </main>
   <jsp:include page='footer.jsp'></jsp:include>

@@ -23,28 +23,49 @@
         <div class="container">
 	        <div class="col s12">
 	          <table class="striped">
-                <thead>
-                    <tr>
-                        <th>Livre</th>
-                        <th>Membre emprunteur</th>
-                        <th>Date d'emprunt</th>
-                        <th>Retour</th>
-                    </tr>
-                </thead>
-                <tbody id="results">
-                
-                    <tr>
-                        <td>Titre du livre, <em>de Nom de l'auteur</em></td>
-                        <td>Prénom et nom du membre emprunteur</td>
-                        <td>Date de l'emprunt</td>
+              <thead>
+                <tr>
+                  <th>Livre</th>
+                  <th>Membre emprunteur</th>
+                  <th>Date d'emprunt</th>
+                  <th>Retour</th>
+                </tr>
+              </thead>
+              <tbody id="results">
+                <c:choose>
+                  <c:when test="${not empty param.show}">
+                    <c:forEach var="current" items="${ListEmprunt}">
+                      <tr>
+                        <td>${current.livre.titre}, <em>de ${current.livre.auteur}</em></td>
+                        <td>${current.membre.prenom} ${current.membre.nom}</td>
+                        <td>${current.dateEmprunt}</td>
+                        <c:choose>
+                          <c:when test="${not empty current.dateRetour}">
+                            <td>${current.dateRetour}</td>
+                          </c:when>
+                          <c:otherwise>
+                            <td>
+                              <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                            </td>
+                          </c:otherwise>
+                        </c:choose>
+                      </tr>
+                    </c:forEach>
+                  </c:when>
+                  <c:otherwise>
+                    <c:forEach var="current" items="${ListCurrentEmprunt}">
+                      <tr>
+                        <td>${current.livre.titre}, <em>de ${current.livre.auteur}</em></td>
+                        <td>${current.membre.prenom} ${current.membre.nom}</td>
+                        <td>${current.dateEmprunt}</td>
                         <td>
-                            <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                          <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
                         </td>
-                    </tr>
-
-					 <!-- TODO : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
-					 <!-- TODO : dans le champ "retour", afficher la date de retour si elle existe, et un lien vers la page de retour si la date est vide (comme dans l'exemple ci-dessus) -->
-                </tbody>
+                      </tr>
+                    </c:forEach>
+                  </c:otherwise>
+                </c:choose>
+              </tbody>
             </table>
           </div>
         </div>
