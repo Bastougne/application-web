@@ -70,7 +70,9 @@ public class MembreServiceImpl implements MembreService {
     public int create( String nom, String prenom, String adresse, String email, String telephone ) throws ServiceException {
         int created;
         try {
-            created = MembreDaoImpl.getInstance().create( nom, prenom, adresse, email, telephone, Abonnement.BASIC );
+            if ( nom == "" || prenom == "" )
+                throw new ServiceException();
+            created = MembreDaoImpl.getInstance().create( nom.toUpperCase(), prenom, adresse, email, telephone, Abonnement.BASIC );
         } catch ( DaoException e ) {
             e.printStackTrace();
             throw new ServiceException();
@@ -83,6 +85,9 @@ public class MembreServiceImpl implements MembreService {
 
     public void update( Membre membre ) throws ServiceException {
         try {
+            if ( membre.getNom() == "" || membre.getPrenom() == "" )
+                throw new ServiceException();
+            membre.setNom( membre.getNom().toUpperCase() );
             MembreDaoImpl.getInstance().update( membre );
         } catch ( DaoException e ) {
             e.printStackTrace();

@@ -79,7 +79,7 @@
                     <td>${current.membre.prenom} ${current.membre.nom}</td>
                     <td>${current.dateEmprunt}</td>
                     <td>
-                      <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
+                      <a href="emprunt_return?id=${current.primaryKey}"><ion-icon class="table-item" name="log-in"></a>
                     </td>
                   </tr>
                 </c:forEach>

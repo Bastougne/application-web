@@ -69,6 +69,8 @@ public class LivreServiceImpl implements LivreService {
     public int create( String titre, String auteur, String isbn ) throws ServiceException {
         int created;
         try {
+            if ( titre == "" )
+                throw new ServiceException();
             created = LivreDaoImpl.getInstance().create( titre, auteur, isbn );
         } catch ( DaoException e ) {
             e.printStackTrace();
@@ -82,6 +84,8 @@ public class LivreServiceImpl implements LivreService {
 
     public void update( Livre livre ) throws ServiceException {
         try {
+            if ( livre.getTitre() == "" )
+                throw new ServiceException();
             LivreDaoImpl.getInstance().update( livre );
         } catch ( DaoException e ) {
             e.printStackTrace();

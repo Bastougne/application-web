@@ -26,7 +26,7 @@
               <tr>
                 <th>Titre</th>
                 <th>Auteur</th>
-                <th>Code ISBN</th>
+                <th>Code ISBN 13</th>
                 <th>Details</th>
               </tr>
             </thead>
@@ -36,7 +36,7 @@
                   <td>${current.titre}</td>
                   <td>${current.auteur}</td>
                   <td>${current.isbn}</td>
-                  <td class="center"><a href="livre_details?id=idDuLivre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+                  <td class="center"><a href="livre_details?id=${current.primaryKey}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
                 </tr>
               </c:forEach>
             </tbody>

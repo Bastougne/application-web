@@ -1,8 +1,8 @@
 package com.ensta.librarymanager.servlet;
 
 import com.ensta.librarymanager.exception.ServiceException;
-import com.ensta.librarymanager.services.implementation.EmpruntServiceImpl;
-import com.ensta.librarymanager.services.implementation.MembreServiceImpl;
+import com.ensta.librarymanager.modele.Livre;
+import com.ensta.librarymanager.services.implementation.LivreServiceImpl;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,27 +10,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet( "/emprunt_return" )
-public class EmpruntReturnServlet extends HttpServlet {
+@WebServlet( "/livre_delete" )
+public class LivreDeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private MembreServiceImpl membreServiceImpl = MembreServiceImpl.getInstance();
+    LivreServiceImpl livreServiceImpl = LivreServiceImpl.getInstance();
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         try {
-            request.setAttribute( "ListCurrentEmprunt", EmpruntServiceImpl.getInstance().getListCurrent() );
-            request.setAttribute( "ListMembreEmpruntPossible", membreServiceImpl.getListMembreEmpruntPossible() );
+            Livre livre = livreServiceImpl.getById( Integer.valueOf( request.getParameter( "id" ) ) );
+            request.setAttribute( "current", livre );
         } catch ( ServiceException e ) {
             e.printStackTrace();
         }
-
-        getServletContext().getRequestDispatcher( "/WEB-INF/View/emprunt_return.jsp" ).forward( request, response );
+        
+        getServletContext().getRequestDispatcher( "/WEB-INF/View/livre_delete.jsp" ).forward( request, response );
     }
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         try {
-            int idEmprunt = Integer.valueOf( request.getParameter( "id" ) );
-            EmpruntServiceImpl.getInstance().returnBook( idEmprunt );
-            response.sendRedirect( "/TP3Ensta/emprunt_list" );
+            int idLivre = Integer.valueOf( request.getParameter( "id" ) );
+            LivreServiceImpl.getInstance().delete( idLivre );
+            response.sendRedirect( "/TP3Ensta/livre_list" );
         } catch ( ServiceException e ) {
             e.printStackTrace();
             doGet( request, response );

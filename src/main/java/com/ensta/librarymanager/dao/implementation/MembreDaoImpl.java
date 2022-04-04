@@ -103,7 +103,7 @@ public class MembreDaoImpl implements MembreDao {
 
     public int count() throws DaoException, SQLException {
         Connection conn = ConnectionManager.getConnection();
-        PreparedStatement stnt = conn.prepareStatement( "SELECT COUNT(id) AS count FROM livre;" );
+        PreparedStatement stnt = conn.prepareStatement( "SELECT COUNT(id) AS count FROM membre;" );
 
         ResultSet countResultSet = stnt.executeQuery();
         countResultSet.next();

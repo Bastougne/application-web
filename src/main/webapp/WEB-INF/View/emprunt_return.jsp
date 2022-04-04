@@ -27,12 +27,25 @@
 	        <div class="row">
 	          <div class="input-field col s12">
 	            <select id="id" name="id" class="browser-default">
-	              <option value="" disabled selected>---</option>
+                <c:choose>
+                  <c:when test="${not empty param.id}">
+	                  <option value="" disabled>---</option>
+                  </c:when>
+                  <c:otherwise>
+                    <option value="" disabled selected>---</option>
+                  </c:otherwise>
+                </c:choose>
                 <c:forEach var="current" items="${ListCurrentEmprunt}">
-                  <option value="${current.primaryKey}">"${current.livre.titre}", emprunte par ${current.membre.prenom} ${current.membre.nom}</option>
+                  <c:choose>
+                    <c:when test="${param.id==current.primaryKey}">
+	                    <option selected value="${current.primaryKey}">"${current.livre.titre}", emprunte par ${current.membre.prenom} ${current.membre.nom}</option>
+                    </c:when>
+                    <c:otherwise>
+                      <option value="${current.primaryKey}">"${current.livre.titre}", emprunte par ${current.membre.prenom} ${current.membre.nom}</option>
+                    </c:otherwise>
+                  </c:choose>
                 </c:forEach>
-                  <!-- TODO : si l'attribut id existe, l'option correspondante devra �tre s�lectionn�e par d�faut (ajouter l'attribut selected dans la balise <option>) -->
-	            </select>
+                </select>
 	          </div>
 	        </div>
 	        <div class="row center">
